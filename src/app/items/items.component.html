@@ -1,0 +1,41 @@
+<div class="jumbotron">
+  <h4 class="text-center">Items</h4>
+</div>
+
+<div class="input-group">
+  <input type="text" class="form-control" #itemTitle>
+  <div class="input-group-addon" style="cursor: pointer" (click)="addItem(itemTitle)">
+    <span>Add</span>
+  </div>
+</div>
+
+<div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of itemsArr" style="height:auto;margin: 10px">
+      <div (click)="onSelectItem(item)">
+        <span>{{item.title}}</span>
+      </div>
+      <span id="addItem" class="hover-cursor pull-right" style="cursor: pointer;" (click)="onDelete(item)">Delete</span>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="selectedItem">
+  <div class="jumbotron">
+    <h4 class="text-center">{{selectedItem.title}}</h4>
+  </div>
+  <div class="input-group">
+    <textarea type="text" class="form-control" #comment></textarea>
+    <div class="input-group-addon" style="cursor: pointer" (click)="addComment(comment)">
+      <span>Add</span>
+    </div>
+  </div>
+  <div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let comment of selectedItemArrComments">
+        <span>{{comment}}</span>
+        <span class="hover-cursor pull-right" style="cursor: pointer;" (click)="deleteComment(selectedItemArrComments.indexOf(comment))">Delete</span>
+      </li>
+    </ul>
+  </div>
+</div>
